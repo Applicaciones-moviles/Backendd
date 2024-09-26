@@ -67,16 +67,44 @@ namespace DriveSafe.Presentation.Publishing.Controllers
         }
         
         [AllowAnonymous]
-        [HttpPost("Login")]
-        [ProducesResponseType(typeof(string), 200)]
-        [ProducesResponseType(typeof(void),statusCode: StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(500)]
-        [Produces(MediaTypeNames.Application.Json)]
-        public async Task<IActionResult> LoginAsync([FromBody] SignInCommand command)
+[HttpPost("Login")]
+[ProducesResponseType(typeof(string), 200)]
+[ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+[ProducesResponseType(500)]
+[Produces(MediaTypeNames.Application.Json)]
+public async Task<IActionResult> LoginAsync([FromBody] SignInCommand command)
+{
+    // Verificamos si el usuario y la contraseña son correctos
+    var user = await _userCommandService.Handle(command);
+    
+    if (user == null)
+    {
+        return BadRequest("Invalid credentials");
+    }
+    
+    // Si las credenciales son correctas, generamos el token JWT
+    var tokenHandler = new JwtSecurityTokenHandler();
+    var key = Encoding.UTF8.GetBytes("DrIvE-sAfE-sEcReT-kEy-AKSJDNBCVSJUKDABYBGVFAKJGVBDJSAK");
+    
+    var tokenDescriptor = new SecurityTokenDescriptor
+    {
+        Subject = new ClaimsIdentity(new Claim[]
         {
-            var result = await _userCommandService.Handle(command);
-            return Ok(result);
-        }
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Role, "User")
+            // Añadir más claims si es necesario
+        }),
+        Expires = DateTime.UtcNow.AddHours(1), // Token expira en 1 hora
+        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+    };
+
+    var token = tokenHandler.CreateToken(tokenDescriptor);
+    var tokenString = tokenHandler.WriteToken(token);
+    
+    // Devolver el token JWT al cliente
+    return Ok(tokenString);
+}
+
         
         [HttpPost]
         [ProducesResponseType(typeof(UserResponse), 201)]
