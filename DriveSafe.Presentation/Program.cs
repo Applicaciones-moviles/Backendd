@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -166,10 +167,10 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 
-var connectionString = configuration.GetConnectionString("DefaultConnection") ?? 
+var dbConnectionString = configuration.GetConnectionString("DefaultConnection") ?? 
     Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
 
-if (string.IsNullOrEmpty(connectionString))
+if (string.IsNullOrEmpty(dbConnectionString))
 {
     throw new InvalidOperationException("Database connection string is not configured.");
 }
