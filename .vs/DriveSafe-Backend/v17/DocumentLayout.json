@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{12ECDD7D-9E0F-4CF2-BAA7-FB4923E001E7}|DriveSafe.Domain\\DriveSafe.Domain.csproj|c:\\users\\jacob\\desktop\\auto theme backend\\drivesafe-backend-main\\drivesafe.domain\\publishing\\models\\entities\\rent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12ECDD7D-9E0F-4CF2-BAA7-FB4923E001E7}|DriveSafe.Domain\\DriveSafe.Domain.csproj|solutionrelative:drivesafe.domain\\publishing\\models\\entities\\rent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12ECDD7D-9E0F-4CF2-BAA7-FB4923E001E7}|DriveSafe.Domain\\DriveSafe.Domain.csproj|c:\\users\\jacob\\desktop\\auto theme backend\\drivesafe-backend-main\\drivesafe.domain\\publishing\\models\\entities\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12ECDD7D-9E0F-4CF2-BAA7-FB4923E001E7}|DriveSafe.Domain\\DriveSafe.Domain.csproj|solutionrelative:drivesafe.domain\\publishing\\models\\entities\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CDAED71-9A41-4CB0-8C80-02183DB3B648}|DriveSafe.Presentation\\DriveSafe.Presentation.csproj|c:\\users\\jacob\\desktop\\auto theme backend\\drivesafe-backend-main\\drivesafe.presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CDAED71-9A41-4CB0-8C80-02183DB3B648}|DriveSafe.Presentation\\DriveSafe.Presentation.csproj|solutionrelative:drivesafe.presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CDAED71-9A41-4CB0-8C80-02183DB3B648}|DriveSafe.Presentation\\DriveSafe.Presentation.csproj|c:\\users\\jacob\\desktop\\auto theme backend\\drivesafe-backend-main\\drivesafe.presentation\\drivesafe.presentation.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0CDAED71-9A41-4CB0-8C80-02183DB3B648}|DriveSafe.Presentation\\DriveSafe.Presentation.csproj|solutionrelative:drivesafe.presentation\\drivesafe.presentation.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Rent.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Domain\\Publishing\\Models\\Entities\\Rent.cs",
+              "RelativeDocumentMoniker": "DriveSafe.Domain\\Publishing\\Models\\Entities\\Rent.cs",
+              "ToolTip": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Domain\\Publishing\\Models\\Entities\\Rent.cs",
+              "RelativeToolTip": "DriveSafe.Domain\\Publishing\\Models\\Entities\\Rent.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T23:14:41.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Domain\\Publishing\\Models\\Entities\\Vehicle.cs",
+              "RelativeDocumentMoniker": "DriveSafe.Domain\\Publishing\\Models\\Entities\\Vehicle.cs",
+              "ToolTip": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Domain\\Publishing\\Models\\Entities\\Vehicle.cs",
+              "RelativeToolTip": "DriveSafe.Domain\\Publishing\\Models\\Entities\\Vehicle.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T23:14:32.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Presentation\\Program.cs",
+              "RelativeDocumentMoniker": "DriveSafe.Presentation\\Program.cs",
+              "ToolTip": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Presentation\\Program.cs",
+              "RelativeToolTip": "DriveSafe.Presentation\\Program.cs",
+              "ViewState": "AQIAAIQAAAAAAAAAAAAAAI4AAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T22:54:03.503Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DriveSafe.Presentation",
+              "DocumentMoniker": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Presentation\\DriveSafe.Presentation.csproj",
+              "RelativeDocumentMoniker": "DriveSafe.Presentation\\DriveSafe.Presentation.csproj",
+              "ToolTip": "C:\\Users\\jacob\\Desktop\\Auto Theme Backend\\DriveSafe-BackEnd-main\\DriveSafe.Presentation\\DriveSafe.Presentation.csproj",
+              "RelativeToolTip": "DriveSafe.Presentation\\DriveSafe.Presentation.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-12T21:19:00.646Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
