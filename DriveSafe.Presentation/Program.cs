@@ -158,6 +158,7 @@ app.UseCors("AllowAllPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
