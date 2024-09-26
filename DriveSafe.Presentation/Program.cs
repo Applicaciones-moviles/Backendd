@@ -112,11 +112,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false,  // Set to true if you're using a specific audience
             ValidateLifetime = true, // Ensure token has not expired
             ValidateIssuerSigningKey = true, // Ensure the token's signing key is valid
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["APPSETTINGS_SECRET"]))
-        };
-    });
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["APPSETTINGS_SECRET"] ?? throw new InvalidOperationException("JWT secret is not configured.")))    });
 
-
+Console.WriteLine($"APPSETTINGS_SECRET: {configuration["APPSETTINGS_SECRET"]}");
+foreach (var c in configuration.AsEnumerable())
+{
+    Console.WriteLine($"{c.Key}: {c.Value}");
+}
 
 // Add AutoMapper
 builder.Services.AddAutoMapper(
