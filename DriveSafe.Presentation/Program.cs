@@ -181,6 +181,17 @@ using (var context = scope.ServiceProvider.GetService<DriveSafeDBContext>())
     context.Database.EnsureCreated();
 }
 
+app.MapGet("/debug", (IConfiguration config) =>
+{
+    var debugInfo = new
+    {
+        EnvironmentVariables = Environment.GetEnvironmentVariables(),
+        ConfigurationValues = config.AsEnumerable().ToDictionary(x => x.Key, x => x.Value),
+        DatabaseConnectionString = config.GetConnectionString("DefaultConnection")
+    };
+    return Results.Json(debugInfo);
+});
+
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
