@@ -112,7 +112,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false,  // Set to true if you're using a specific audience
             ValidateLifetime = true, // Ensure token has not expired
             ValidateIssuerSigningKey = true, // Ensure the token's signing key is valid
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AppSettings:Secret"])) // Use secret key from environment or appsettings.json
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["APPSETTINGS_SECRET"]))
         };
     });
 
@@ -154,11 +154,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
 app.UseCors("AllowAllPolicy"); 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
