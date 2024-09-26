@@ -103,8 +103,9 @@ builder.Services.AddScoped<IEncryptService, EncryptService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 // Configure authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => 
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -112,7 +113,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false,  // Set to true if you're using a specific audience
             ValidateLifetime = true, // Ensure token has not expired
             ValidateIssuerSigningKey = true, // Ensure the token's signing key is valid
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["APPSETTINGS_SECRET"] ?? throw new InvalidOperationException("JWT secret is not configured.")))    });
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["APPSETTINGS_SECRET"] ?? throw new InvalidOperationException("JWT secret is not configured.")))    
+            };
+    });
 
 Console.WriteLine($"APPSETTINGS_SECRET: {configuration["APPSETTINGS_SECRET"]}");
 foreach (var c in configuration.AsEnumerable())
