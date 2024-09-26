@@ -29,10 +29,15 @@ builder.Services.AddCors(options =>
 // Load configuration from appsettings.json
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-    .AddJsonFile("appsettings.json", true, true)
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables() // Agregar esta línea
     .Build();
-
 builder.Services.AddSingleton(configuration);
+
+foreach (var c in configuration.AsEnumerable())
+{
+    Console.WriteLine($"{c.Key}: {c.Value}");
+}
 
 // Add services to the container
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -103,25 +108,28 @@ builder.Services.AddScoped<IEncryptService, EncryptService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 // Configure authentication
+var jwtSecret = configuration["APPSETTINGS_SECRET"] ?? configuration["AppSettings:Secret"];
+if (string.IsNullOrEmpty(jwtSecret))
+{
+    throw new InvalidOperationException("JWT secret is not configured. Please set APPSETTINGS_SECRET environment variable or AppSettings:Secret in appsettings.json");
+}
+
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => 
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = false,  // Set to true if you're using a specific issuer
-            ValidateAudience = false,  // Set to true if you're using a specific audience
-            ValidateLifetime = true, // Ensure token has not expired
-            ValidateIssuerSigningKey = true, // Ensure the token's signing key is valid
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["APPSETTINGS_SECRET"] ?? throw new InvalidOperationException("JWT secret is not configured.")))    
-            };
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret))
+        };
     });
 
 Console.WriteLine($"APPSETTINGS_SECRET: {configuration["APPSETTINGS_SECRET"]}");
-foreach (var c in configuration.AsEnumerable())
-{
-    Console.WriteLine($"{c.Key}: {c.Value}");
-}
+
 
 // Add AutoMapper
 builder.Services.AddAutoMapper(
@@ -144,6 +152,27 @@ builder.Services.AddDbContext<DriveSafeDBContext>(
 builder.Services.AddApplicationInsightsTelemetry();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        var exception = exceptionHandlerPathFeature?.Error;
+        await context.Response.WriteAsJsonAsync(new { error = exception?.Message });
+        Console.WriteLine($"Unhandled exception: {exception}");
+    });
+});
+
+var connectionString = configuration.GetConnectionString("DefaultConnection") ?? 
+    Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Database connection string is not configured.");
+}
 
 // Ensure database is created
 using (var scope = app.Services.CreateScope())
